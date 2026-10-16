@@ -1,0 +1,23 @@
+import pygame as pg
+pg.init()
+
+BLACK = ( 0, 0, 0)
+WHITE = ( 255, 255, 255)
+GREEN = ( 0, 255, 0)
+RED = ( 255, 0, 0)
+BLUE = ( 0, 0, 255)
+
+size = (700, 500)
+screen = pg.display.set_mode(size)
+pg.display.set_caption("Deeper and Darker")
+
+
+carryon = True
+
+clock = pg.time.Clock()
+
+while carryon:
+    for event in pg.event.get(): # User did something
+        if event.type == pg.QUIT: # If user clicked close
+           carryOn = False
+    screen.fill(WHITE)
