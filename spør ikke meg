@@ -21,3 +21,9 @@ while carryon:
         if event.type == pg.QUIT: # If user clicked close
            carryOn = False
     screen.fill(WHITE)
+
+    pygame.display.flip()
+    
+    clock.tick(60)
+
+pg.quit()
