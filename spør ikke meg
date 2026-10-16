@@ -19,7 +19,7 @@ clock = pg.time.Clock()
 while carryon:
     for event in pg.event.get(): # User did something
         if event.type == pg.QUIT: # If user clicked close
-           carryOn = False
+           carryon = False
     screen.fill(WHITE)
     pg.draw.circle(screen, RED, [350, 250], 150, 0)
 
