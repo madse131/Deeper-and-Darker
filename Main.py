@@ -5,13 +5,13 @@ pg.init()
 WIDTH = 1920
 HEIGHT = 1080
 
-print(WIDTH, type(WIDTH))
+
 screen = pg.display.set_mode((WIDTH,HEIGHT))
 #screen = pg.display.set_mode((0,0),pg.FULLSCREEN)
 pg.display.set_caption("Deeper and Darker")
 FPS = 60
 run = True
-
+game_objects = []
 
 clock = pg.time.Clock()
 
@@ -42,13 +42,7 @@ def draw():
 
     pg.display.update()
 
-# GAME LOOP
-while run:
-    actions()
 
-    draw()
-
-    clock.tick(FPS)
 
 # KLASSER
 class GameObject:
@@ -69,3 +63,17 @@ class GameObject:
 
 
 # Player
+
+player = GameObject()
+
+game_objects.append(player)
+
+
+
+# GAME LOOP
+while run:
+    actions()
+
+    draw()
+
+    clock.tick(FPS)
