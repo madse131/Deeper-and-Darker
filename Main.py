@@ -1,6 +1,8 @@
 import pygame as pg
+import os
 import Player
 pg.init()
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 WIDTH = 1200
 HEIGHT = 720
@@ -61,7 +63,9 @@ class GameObject:
 
         pg.draw.rect(screen, (150,0,0), self.rect)
 
-
+        player_sprite = pg.image.load("Assets/Player sprite.png")
+        player_sprite = pg.transform.scale(player_sprite,(player_height, player_width))
+        screen.blit(player_sprite, (self.x_pos, self.y_pos))
 
 
 # Player
