@@ -5,8 +5,8 @@ pg.init()
 WIDTH = 1200
 HEIGHT = 720
 
-player_height = 50
-player_width = 50
+player_height = 130
+player_width = 130
 
 
 screen = pg.display.set_mode((WIDTH,HEIGHT))
@@ -69,6 +69,10 @@ class GameObject:
 player = GameObject()
 
 game_objects.append(player)
+
+
+
+
 
 #self.img =pg.transform.scale(
     #pg.image.load(
