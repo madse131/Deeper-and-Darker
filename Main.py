@@ -2,8 +2,11 @@ import pygame as pg
 import Player
 pg.init()
 
-WIDTH = 1920
-HEIGHT = 1080
+WIDTH = 1200
+HEIGHT = 720
+
+player_height = 50
+player_width = 50
 
 
 screen = pg.display.set_mode((WIDTH,HEIGHT))
@@ -43,12 +46,11 @@ def draw():
     pg.display.update()
 
 
-
 # KLASSER
 class GameObject:
-    def __init__(self, x_pos=0, y_pos=0):
-        self.x_size = 50    #piksler
-        self.y_size = 50    #piksler
+    def __init__(self, x_pos=WIDTH//2-player_width//2, y_pos=HEIGHT//2-player_height//2):
+        self.x_size = player_width   #piksler
+        self.y_size = player_height    #piksler
 
         self.x_pos = x_pos
         self.y_pos = y_pos
