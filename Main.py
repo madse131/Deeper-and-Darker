@@ -70,6 +70,10 @@ player = GameObject()
 
 game_objects.append(player)
 
+#self.img =pg.transform.scale(
+    #pg.image.load(
+        #'assets/#####)
+
 
 
 # GAME LOOP
