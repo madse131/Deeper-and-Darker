@@ -42,7 +42,7 @@ def actions():
 def draw():
     global screen, game_objects
 
-    screen.fill((0,0,0))
+    #screen.fill((0,0,0))
 
     for object in game_objects:
         object.draw()
@@ -65,11 +65,17 @@ class GameObject:
 
         pg.draw.rect(screen, (150,0,0), self.rect)
 
+        map_sprite = pg.image.load("Assets/Design uten navn.png")
+        map_sprite = pg.transform.scale(map_sprite,(10000, 10000)) #FIX ME, skaper MYE! lag
+        screen.blit(map_sprite, (0, 0))
+
         player_sprite = pg.image.load("Assets/Player sprite.png")
         player_sprite = pg.transform.scale(player_sprite,(player_height, player_width))
         screen.blit(player_sprite, (self.x_pos, self.y_pos))
 
-
+        
+    
+    
 # Player
 
 player = GameObject()
