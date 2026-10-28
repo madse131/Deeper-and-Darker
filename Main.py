@@ -60,14 +60,17 @@ class GameObject:
         self.y_pos = y_pos
         
         self.rect = pg.Rect(self.x_pos,self.y_pos,self.x_size, self.y_size)
+
+        self.map_sprite = pg.image.load("Assets/Design uten navn.png")
+        self.map_sprite = pg.transform.scale(self.map_sprite,(10000, 10000))
+    
     def draw(self):
         global screen
 
         pg.draw.rect(screen, (150,0,0), self.rect)
 
-        map_sprite = pg.image.load("Assets/Design uten navn.png")
-        map_sprite = pg.transform.scale(map_sprite,(10000, 10000)) #FIX ME, skaper MYE! lag
-        screen.blit(map_sprite, (0, 0))
+
+        screen.blit(self.map_sprite, (0, 0))
 
         player_sprite = pg.image.load("Assets/Player sprite.png")
         player_sprite = pg.transform.scale(player_sprite,(player_height, player_width))
