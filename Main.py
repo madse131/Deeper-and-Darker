@@ -1,6 +1,7 @@
 import pygame as pg
 import os
 import Player
+import math
 pg.init()
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
@@ -10,6 +11,8 @@ SCREEN_HEIGHT = 1080
 player_height = 130
 player_width = 130
 
+movement_speed = 5
+diagonal_movement_speed = movement_speed*math.sqrt(2)/2
 
 #screen = pg.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
 screen = pg.display.set_mode((0,0),pg.FULLSCREEN)
@@ -29,6 +32,29 @@ def actions():
     keys = pg.key.get_pressed()
     mouse_buttons = pg.mouse.get_pressed()
     mouse_pos = pg.mouse.get_pos()
+
+    if keys[pg.K_w]:
+        if keys[pg.K_a]:
+            player.map_sprite_y_pos += diagonal_movement_speed
+            player.map_sprite_x_pos += diagonal_movement_speed
+        elif keys[pg.K_d]:
+            player.map_sprite_y_pos += diagonal_movement_speed
+            player.map_sprite_x_pos -= diagonal_movement_speed
+        else:
+            player.map_sprite_y_pos += movement_speed
+    if keys[pg.K_s]:
+        if keys[pg.K_a]:
+            player.map_sprite_y_pos -= diagonal_movement_speed
+            player.map_sprite_x_pos += diagonal_movement_speed
+        elif keys[pg.K_d]:
+            player.map_sprite_y_pos -= diagonal_movement_speed
+            player.map_sprite_x_pos -= diagonal_movement_speed
+        else:
+            player.map_sprite_y_pos -= movement_speed
+    elif keys[pg.K_a] and not keys[pg.K_w] and not keys[pg.K_s]:
+        player.map_sprite_x_pos += movement_speed
+    elif keys[pg.K_d] and not keys[pg.K_w] and not keys[pg.K_s]:
+        player.map_sprite_x_pos -= movement_speed
 
     #system shutdown
     if keys[pg.K_ESCAPE]:
@@ -63,6 +89,8 @@ class GameObject:
 
         self.map_sprite = pg.image.load("Assets/Design uten navn.png")
         self.map_sprite = pg.transform.scale(self.map_sprite,(10000, 10000))
+        self.map_sprite_x_pos = screen.size[0]//2-5000
+        self.map_sprite_y_pos = screen.size[1]//2-5000
     
     def draw(self):
         global screen
@@ -70,7 +98,7 @@ class GameObject:
         pg.draw.rect(screen, (150,0,0), self.rect)
 
 
-        screen.blit(self.map_sprite, (0, 0))
+        screen.blit(self.map_sprite, (self.map_sprite_x_pos, self.map_sprite_y_pos))
 
         player_sprite = pg.image.load("Assets/Player sprite.png")
         player_sprite = pg.transform.scale(player_sprite,(player_height, player_width))
