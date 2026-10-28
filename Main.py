@@ -4,19 +4,21 @@ import Player
 pg.init()
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
-WIDTH = 1200
-HEIGHT = 720
+SCREEN_WIDTH = 1920
+SCREEN_HEIGHT = 1080
 
 player_height = 130
 player_width = 130
 
 
-screen = pg.display.set_mode((WIDTH,HEIGHT))
-#screen = pg.display.set_mode((0,0),pg.FULLSCREEN)
+#screen = pg.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
+screen = pg.display.set_mode((0,0),pg.FULLSCREEN)
 pg.display.set_caption("Deeper and Darker")
 FPS = 60
 run = True
 game_objects = []
+
+print(screen.size[0])
 
 clock = pg.time.Clock()
 
@@ -40,7 +42,7 @@ def actions():
 def draw():
     global screen, game_objects
 
-    screen.fill((45,60,100))
+    screen.fill((0,0,0))
 
     for object in game_objects:
         object.draw()
@@ -50,7 +52,7 @@ def draw():
 
 # KLASSER
 class GameObject:
-    def __init__(self, x_pos=WIDTH//2-player_width//2, y_pos=HEIGHT//2-player_height//2):
+    def __init__(self, x_pos=screen.size[0]//2-player_width//2, y_pos=screen.size[1]//2-player_height//2):
         self.x_size = player_width   #piksler
         self.y_size = player_height    #piksler
 
