@@ -105,7 +105,7 @@ class GameObject:
 
         player_sprite = pg.image.load("Assets/Player sprite.png")
         player_sprite = pg.transform.scale(player_sprite,(player_height, player_width))
-        player_sprite = pg.transform.rotate(player_sprite, (mouse_angle*180/math.pi)*-1-90)
+        player_sprite = pg.transform.rotate(player_sprite, (mouse_angle*(180/math.pi))*-1-90) #TO DO: smooth non-linear rotation
         screen.blit(player_sprite, (self.x_pos, self.y_pos))
 
         
