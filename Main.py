@@ -1,6 +1,7 @@
 import pygame as pg
 import os
 import Player
+import UI
 import math
 pg.init()
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
@@ -73,6 +74,8 @@ def draw():
     for object in game_objects:
         object.draw()
 
+    start.draw()
+
     pg.display.update()
 
 
@@ -105,20 +108,17 @@ class GameObject:
         player_sprite = pg.transform.rotate(player_sprite, (mouse_angle*(180/math.pi))*-1-90) #TO DO: smooth non-linear rotation
         screen.blit(player_sprite, (self.x_pos, self.y_pos))
 
-
-
-# Player
+class GUI:
+    def draw(self):
+        global screen
+        screen.blit(UI.title_screen)
+    
+### Player
+start = GUI()
 
 player = GameObject()
 
 game_objects.append(player)
-
-
-
-
-
-
-
 
 
 # GAME LOOP
