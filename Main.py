@@ -103,8 +103,9 @@ class GameObject:
 
         player_sprite = pg.image.load("Assets/Player sprite.png")
         player_sprite = pg.transform.scale(player_sprite,(player_height, player_width))
-        player_sprite = pg.transform.rotate(player_sprite, (mouse_angle*(180/math.pi))*-1-90) #TO DO: smooth non-linear rotation
-        screen.blit(player_sprite, (self.x_pos, self.y_pos))
+        player_sprite = pg.transform.rotate(player_sprite, (mouse_angle*180/math.pi)*-1-90) #TO DO: smooth non-linear rotation
+        center = player_sprite.get_rect(center=(self.x_pos + self.x_size//2, self.y_pos + self.y_size//2))
+        screen.blit(player_sprite, center)
 
 class GUI:
     def draw(self):
@@ -115,12 +116,17 @@ class GUI:
         UI.play_button = pg.transform.scale(UI.play_button,(screen.size[0]/6,screen.size[1]/6))
         screen.blit(UI.play_button, (screen.size[0]/2-screen.size[0]/12,screen.size[1]/2-screen.size[1]/7))    
 
+<<<<<<< HEAD
         if pg.mouse.get_pressed():
              UI.play_button = pg.transform.scale(UI.play_button,(screen.size[0]/4,screen.size[1]/4))
              #dette fungerer ikke :(
         else:
              UI.play_button = pg.transform.scale(UI.play_button,(screen.size[0]/6,screen.size[1]/6))
         
+=======
+        screen.blit(UI.play_button, (screen.size[0]/2-screen.size[0]/12,screen.size[1]/2-screen.size[1]/7))
+       
+>>>>>>> 5323b5d (player rotation fix)
 
 
     
