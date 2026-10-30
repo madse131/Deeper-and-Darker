@@ -27,11 +27,14 @@ clock = pg.time.Clock()
 
 # FUNKSJONER:
 def actions():
-    global run
+    global run, mouse_angle
     events = pg.event.get()
     keys = pg.key.get_pressed()
     mouse_buttons = pg.mouse.get_pressed()
     mouse_pos = pg.mouse.get_pos()
+    mouse_x = mouse_pos[0] - screen.size[0]//2
+    mouse_y = mouse_pos[1] - screen.size[1]//2
+    mouse_angle = math.atan2(mouse_y, mouse_x)
 
     if keys[pg.K_w]:
         if keys[pg.K_a]:
@@ -93,7 +96,7 @@ class GameObject:
         self.map_sprite_y_pos = screen.size[1]//2-5000
     
     def draw(self):
-        global screen
+        global screen, mouse_angle
 
         pg.draw.rect(screen, (150,0,0), self.rect)
 
@@ -102,6 +105,7 @@ class GameObject:
 
         player_sprite = pg.image.load("Assets/Player sprite.png")
         player_sprite = pg.transform.scale(player_sprite,(player_height, player_width))
+        player_sprite = pg.transform.rotate(player_sprite, (mouse_angle*180/math.pi)*-1-90)
         screen.blit(player_sprite, (self.x_pos, self.y_pos))
 
         
