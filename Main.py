@@ -21,8 +21,6 @@ FPS = 60
 run = True
 game_objects = []
 
-print(screen.size[0])
-
 clock = pg.time.Clock()
 
 # FUNKSJONER:
@@ -113,6 +111,13 @@ class GUI:
         global screen
         UI.title_screen = pg.transform.scale(UI.title_screen,(screen.size[0],screen.size[1]))
         screen.blit(UI.title_screen)
+
+        UI.play_button = pg.transform.scale(UI.play_button,(screen.size[0]/6,screen.size[1]/6))
+
+        screen.blit(UI.play_button, (screen.size[0]/2-screen.size[0]/12,screen.size[1]/2-screen.size[1]/7))
+        
+
+
     
 ### Player
 start = GUI()
