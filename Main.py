@@ -111,6 +111,7 @@ class GameObject:
 class GUI:
     def draw(self):
         global screen
+        UI.title_screen = pg.transform.scale(UI.title_screen,(screen.size[0],screen.size[1]))
         screen.blit(UI.title_screen)
     
 ### Player
