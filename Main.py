@@ -114,7 +114,8 @@ class GUI:
 
         UI.play_button = pg.transform.scale(UI.play_button,(screen.size[0]/6,screen.size[1]/6))
         screen.blit(UI.play_button, (screen.size[0]/2-screen.size[0]/12,screen.size[1]/2-screen.size[1]/7))    
-
+        # in progress bla bla bla
+        mouse_pos = pg.mouse.get_pos()
         if pg.mouse.get_pressed():
              UI.play_button = pg.transform.scale(UI.play_button,(screen.size[0]/4,screen.size[1]/4))
              #dette fungerer ikke :(
