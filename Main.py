@@ -113,10 +113,11 @@ class GUI:
     def __init__(self):
         self.button_size = 100
         self.title_screen_true = True
+        self.fade = 255
     def draw(self):
         global screen
 
-
+        # TITLE SCREEN
         if self.title_screen_true == 1:
             UI.title_screen = pg.transform.scale(UI.title_screen,(screen.size[0],screen.size[1]))
             screen.blit(UI.title_screen)
@@ -141,6 +142,15 @@ class GUI:
             button_rect = button.get_rect(center=(screen.size[0]/2, screen.size[1]/2.5))
 
             screen.blit(button, button_rect)
+
+        #Start Fade in (MÅ VÆRE NEDERST!!!)
+        fade = pg.Surface(screen.get_size())
+        fade.fill((0, 0, 0))
+        fade.set_alpha(self.fade)
+        screen.blit(fade, (0, 0))
+
+        if self.fade > 0:
+            self.fade -= 2
 
 ### Player
 start = GUI()
