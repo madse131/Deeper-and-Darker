@@ -6,17 +6,19 @@ import math
 pg.init()
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
-SCREEN_WIDTH = 1920
-SCREEN_HEIGHT = 1080
 
+# Player attributes
 player_height = 130
 player_width = 130
 
 movement_speed = 5
 diagonal_movement_speed = movement_speed*math.sqrt(2)/2
 
+# Display osv
 screen = pg.display.set_mode((0,0),pg.FULLSCREEN)
 pg.display.set_caption("Deeper and Darker")
+
+# Game rules?
 FPS = 60
 run = True
 game_objects = []
@@ -107,23 +109,32 @@ class GameObject:
         screen.blit(player_sprite, (self.x_pos, self.y_pos))
 
 class GUI:
+    def __init__(self):
+        self.button_size = 100
+
     def draw(self):
         global screen
+
+        # Play Button
         UI.title_screen = pg.transform.scale(UI.title_screen,(screen.size[0],screen.size[1]))
         screen.blit(UI.title_screen)
 
-        UI.play_button = pg.transform.scale(UI.play_button,(screen.size[0]/6,screen.size[1]/6))
-        screen.blit(UI.play_button, (screen.size[0]/2-screen.size[0]/12,screen.size[1]/2-screen.size[1]/7))    
-        # in progress bla bla bla
         mouse_pos = pg.mouse.get_pos()
-        if pg.mouse.get_pressed():
-             UI.play_button = pg.transform.scale(UI.play_button,(screen.size[0]/4,screen.size[1]/4))
-             #dette fungerer ikke :(
+
+        button = pg.transform.scale(UI.play_button, (int(self.button_size), int(self.button_size)))
+        button_rect = button.get_rect(center=(screen.size[0]/2, screen.size[1]/2.5))
+
+        if button_rect.collidepoint(mouse_pos):
+            target_size = screen.size[0]/5
         else:
-             UI.play_button = pg.transform.scale(UI.play_button,(screen.size[0]/6,screen.size[1]/6))
-        
+            target_size = screen.size[0]/6
 
+        self.button_size += (target_size - self.button_size) * 0.15
 
+        button = pg.transform.scale(UI.play_button, (int(self.button_size), int(self.button_size)))
+        button_rect = button.get_rect(center=(screen.size[0]/2, screen.size[1]/2.5))
+
+        screen.blit(button, button_rect)
     
 ### Player
 start = GUI()
