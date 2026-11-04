@@ -125,20 +125,20 @@ class GUI:
             mouse_pos = pg.mouse.get_pos()
 
             button = pg.transform.scale(UI.play_button, (int(self.button_size), int(self.button_size)))
-            button_rect = button.get_rect(center=(screen.size[0]/2, screen.size[1]/2.5))
+            button_rect = button.get_rect(center=(screen.size[0]/2, screen.size[1]/2))
 
             if button_rect.collidepoint(mouse_pos):
                 target_size = screen.size[0]/5
             else:
-                target_size = screen.size[0]/6
+                target_size = screen.size[0]/5.5
 
             if button_rect.collidepoint(mouse_pos) and pg.mouse.get_pressed()[0]:
                 self.title_screen_true = False
 
-            self.button_size += (target_size - self.button_size) * 0.15
+            self.button_size += (target_size - self.button_size) * 0.5
 
-            button = pg.transform.scale(UI.play_button, (int(self.button_size), int(self.button_size)))
-            button_rect = button.get_rect(center=(screen.size[0]/2, screen.size[1]/2.5))
+            button = pg.transform.scale(UI.play_button, (int(self.button_size), int(self.button_size)/1.4))
+            button_rect = button.get_rect(center=(screen.size[0]/2, screen.size[1]/2))
 
             screen.blit(button, button_rect)
 
