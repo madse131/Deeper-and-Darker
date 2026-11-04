@@ -71,8 +71,9 @@ def actions():
 def draw():
     global screen, game_objects
 
-    for object in game_objects:
-        object.draw()
+    if not start.title_screen_true and start.game_started:
+        for object in game_objects:
+            object.draw()
 
     start.draw()
 
@@ -114,13 +115,16 @@ class GUI:
         self.button_size = 100
         self.title_screen_true = True
         self.fade = 255
+        self.fading_out = False
+        self.game_started = False
+
     def draw(self):
         global screen
 
         # TITLE SCREEN
         if self.title_screen_true == 1:
             UI.title_screen = pg.transform.scale(UI.title_screen,(screen.size[0],screen.size[1]))
-            screen.blit(UI.title_screen)
+            screen.blit(UI.title_screen, (0, 0))
 
             #Play button
             mouse_pos = pg.mouse.get_pos()
@@ -133,8 +137,8 @@ class GUI:
             else:
                 target_size = screen.size[0]/5.5
 
-            if button_rect.collidepoint(mouse_pos) and pg.mouse.get_pressed()[0]:
-                self.title_screen_true = False
+            if button_rect.collidepoint(mouse_pos) and pg.mouse.get_pressed()[0] and not self.fading_out:
+                self.fading_out = True
 
             self.button_size += (target_size - self.button_size) * 0.5
 
@@ -142,15 +146,26 @@ class GUI:
             button_rect = button.get_rect(center=(screen.size[0]/2, screen.size[1]/2))
 
             screen.blit(button, button_rect)
+            
 
-        #Start Fade in (MÅ VÆRE NEDERST!!!)
+        
+        # Fade
+        if self.fading_out:
+            self.fade += 3
+
+            if self.fade >= 255:
+                self.fade = 255
+                self.title_screen_true = False
+                self.fading_out = False
+                self.game_started = True
+
+        elif self.fade > 0:
+            self.fade -= 3
+
         fade = pg.Surface(screen.get_size())
         fade.fill((0, 0, 0))
         fade.set_alpha(self.fade)
         screen.blit(fade, (0, 0))
-
-        if self.fade > 0:
-            self.fade -= 2
 
 ### Player
 start = GUI()
