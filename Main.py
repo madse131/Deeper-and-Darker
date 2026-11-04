@@ -112,31 +112,36 @@ class GameObject:
 class GUI:
     def __init__(self):
         self.button_size = 100
-
+        self.title_screen_true = True
     def draw(self):
         global screen
 
-        # Play Button
-        UI.title_screen = pg.transform.scale(UI.title_screen,(screen.size[0],screen.size[1]))
-        screen.blit(UI.title_screen)
 
-        mouse_pos = pg.mouse.get_pos()
+        if self.title_screen_true == 1:
+            UI.title_screen = pg.transform.scale(UI.title_screen,(screen.size[0],screen.size[1]))
+            screen.blit(UI.title_screen)
 
-        button = pg.transform.scale(UI.play_button, (int(self.button_size), int(self.button_size)))
-        button_rect = button.get_rect(center=(screen.size[0]/2, screen.size[1]/2.5))
+            #Play button
+            mouse_pos = pg.mouse.get_pos()
 
-        if button_rect.collidepoint(mouse_pos):
-            target_size = screen.size[0]/5
-        else:
-            target_size = screen.size[0]/6
+            button = pg.transform.scale(UI.play_button, (int(self.button_size), int(self.button_size)))
+            button_rect = button.get_rect(center=(screen.size[0]/2, screen.size[1]/2.5))
 
-        self.button_size += (target_size - self.button_size) * 0.15
+            if button_rect.collidepoint(mouse_pos):
+                target_size = screen.size[0]/5
+            else:
+                target_size = screen.size[0]/6
 
-        button = pg.transform.scale(UI.play_button, (int(self.button_size), int(self.button_size)))
-        button_rect = button.get_rect(center=(screen.size[0]/2, screen.size[1]/2.5))
+            if button_rect.collidepoint(mouse_pos) and pg.mouse.get_pressed()[0]:
+                self.title_screen_true = False
 
-        screen.blit(button, button_rect)
-    
+            self.button_size += (target_size - self.button_size) * 0.15
+
+            button = pg.transform.scale(UI.play_button, (int(self.button_size), int(self.button_size)))
+            button_rect = button.get_rect(center=(screen.size[0]/2, screen.size[1]/2.5))
+
+            screen.blit(button, button_rect)
+
 ### Player
 start = GUI()
 
