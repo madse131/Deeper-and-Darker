@@ -124,11 +124,9 @@ class GUI:
         self.game_started = False
 
         self.Torch_1 = pg.image.load("Assets/DaD Torch s1.png")
-        self.Torch_2 = pg.image.load("Assets/DaD Torch s2.png"),
-        self.Torch_3 = pg.image.load("Assets/DaD Torch s3.png"),
-        self.Torch_4 = pg.image.load("Assets/DaD Torch s4.png"),
-
-        self.Torch_1 = pg.scale(self.Torch_1(screen[0],screen[1])) # feil
+        self.Torch_2 = pg.image.load("Assets/DaD Torch s2.png")
+        self.Torch_3 = pg.image.load("Assets/DaD Torch s3.png")
+        self.Torch_4 = pg.image.load("Assets/DaD Torch s4.png")
 
         self.torch_frames = [
             pg.image.load("Assets/DaD Torch s1.png"),
