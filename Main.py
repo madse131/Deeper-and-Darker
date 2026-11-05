@@ -123,16 +123,12 @@ class GUI:
         self.fading_out = False
         self.game_started = False
 
-        self.Torch_1 = pg.image.load("Assets/DaD Torch s1.png")
-        self.Torch_2 = pg.image.load("Assets/DaD Torch s2.png")
-        self.Torch_3 = pg.image.load("Assets/DaD Torch s3.png")
-        self.Torch_4 = pg.image.load("Assets/DaD Torch s4.png")
 
         self.torch_frames = [
-            pg.image.load("Assets/DaD Torch s1.png"),
-            pg.image.load("Assets/DaD Torch s2.png"),
-            pg.image.load("Assets/DaD Torch s3.png"),
-            pg.image.load("Assets/DaD Torch s4.png")
+            pg.transform.scale(pg.image.load("Assets/DaD Torch s1.png"), (100, 160)),
+            pg.transform.scale(pg.image.load("Assets/DaD Torch s2.png"), (100, 160)),
+            pg.transform.scale(pg.image.load("Assets/DaD Torch s3.png"), (100, 160)),
+            pg.transform.scale(pg.image.load("Assets/DaD Torch s4.png"), (100, 160))
         ]
         
 
@@ -176,10 +172,9 @@ class GUI:
                 self.current_frame = (self.current_frame + 1) % 4
                 self.animation_timer = 0
 
-            torch_x = screen.get_width() * 0.2
+            torch_x = screen.get_width() * 0.07
             torch_y = screen.get_height() * 0.8
 
-            pg.tranform.scale
             screen.blit(self.torch_frames[self.current_frame], (torch_x, torch_y))
 
 
