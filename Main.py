@@ -123,6 +123,24 @@ class GUI:
         self.fading_out = False
         self.game_started = False
 
+        self.Torch_1 = pg.image.load("Assets/DaD Torch s1.png")
+        self.Torch_2 = pg.image.load("Assets/DaD Torch s2.png"),
+        self.Torch_3 = pg.image.load("Assets/DaD Torch s3.png"),
+        self.Torch_4 = pg.image.load("Assets/DaD Torch s4.png"),
+
+        self.Torch_1 = pg.scale(self.Torch_1(screen[0],screen[1])) # feil
+
+        self.torch_frames = [
+            pg.image.load("Assets/DaD Torch s1.png"),
+            pg.image.load("Assets/DaD Torch s2.png"),
+            pg.image.load("Assets/DaD Torch s3.png"),
+            pg.image.load("Assets/DaD Torch s4.png")
+        ]
+        
+
+        self.current_frame = 0
+        self.animation_timer = 0
+
     def draw(self):
         global screen
 
@@ -152,6 +170,21 @@ class GUI:
 
             screen.blit(button, button_rect)
             
+        # Torch animation
+        if self.game_started == True:
+            self.animation_timer += 1
+
+            if self.animation_timer >= 10:
+                self.current_frame = (self.current_frame + 1) % 4
+                self.animation_timer = 0
+
+            torch_x = screen.get_width() * 0.2
+            torch_y = screen.get_height() * 0.8
+
+            pg.tranform.scale
+            screen.blit(self.torch_frames[self.current_frame], (torch_x, torch_y))
+
+
 
         
         # Fade
