@@ -27,15 +27,18 @@ clock = pg.time.Clock()
 
 # FUNKSJONER:
 def actions():
-    global run, mouse_angle
+    global run, target_angle
     events = pg.event.get()
     keys = pg.key.get_pressed()
     mouse_buttons = pg.mouse.get_pressed()
     mouse_pos = pg.mouse.get_pos()
     mouse_x = mouse_pos[0] - screen.size[0]//2
     mouse_y = mouse_pos[1] - screen.size[1]//2
-    mouse_angle = math.atan2(mouse_y, mouse_x)
-
+    target_angle = math.degrees(math.atan2(mouse_y, mouse_x)) * -1 - 90 
+    current_angle = player.player_sprite_angle 
+    angle_difference = (target_angle - current_angle + 180) % 360 - 180 
+    player.player_sprite_angle += angle_difference * 0.2 #Interpolering for smooth bevegelse
+    
     if keys[pg.K_w]:
         if keys[pg.K_a]:
             player.map_sprite_y_pos += diagonal_movement_speed
@@ -91,6 +94,8 @@ class GameObject:
 
         self.rect = pg.Rect(self.x_pos,self.y_pos,self.x_size, self.y_size)
 
+        self.player_sprite_angle = 0
+
         self.map_sprite = pg.image.load("Assets/Design uten navn.png")
         self.map_sprite = pg.transform.scale(self.map_sprite,(10000, 10000))
         self.map_sprite_x_pos = screen.size[0]//2-5000
@@ -106,7 +111,7 @@ class GameObject:
 
         player_sprite = pg.image.load("Assets/Player sprite.png")
         player_sprite = pg.transform.scale(player_sprite,(player_height, player_width))
-        player_sprite = pg.transform.rotate(player_sprite, (mouse_angle*180/math.pi)*-1-90) #TO DO: smooth non-linear rotation
+        player_sprite = pg.transform.rotate(player_sprite, self.player_sprite_angle) #TO DO: smooth non-linear rotation
         center = player_sprite.get_rect(center=(self.x_pos + self.x_size//2, self.y_pos + self.y_size//2))
         screen.blit(player_sprite, center)
 
