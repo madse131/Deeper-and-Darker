@@ -125,10 +125,10 @@ class GUI:
 
 
         self.torch_frames = [
-            pg.transform.scale(pg.image.load("Assets/DaD Torch s1.png"), (100, 160)),
-            pg.transform.scale(pg.image.load("Assets/DaD Torch s2.png"), (100, 160)),
-            pg.transform.scale(pg.image.load("Assets/DaD Torch s3.png"), (100, 160)),
-            pg.transform.scale(pg.image.load("Assets/DaD Torch s4.png"), (100, 160))
+            pg.transform.scale(pg.image.load("Assets/DaD Torch s1.png"), (125, 200)),
+            pg.transform.scale(pg.image.load("Assets/DaD Torch s2.png"), (125, 200)),
+            pg.transform.scale(pg.image.load("Assets/DaD Torch s3.png"), (125, 200)),
+            pg.transform.scale(pg.image.load("Assets/DaD Torch s4.png"), (125, 200))
         ]
         
 
@@ -172,8 +172,8 @@ class GUI:
                 self.current_frame = (self.current_frame + 1) % 4
                 self.animation_timer = 0
 
-            torch_x = screen.get_width() * 0.07
-            torch_y = screen.get_height() * 0.8
+            torch_x = screen.get_width() * 0.03
+            torch_y = screen.get_height() * 0.67
 
             screen.blit(self.torch_frames[self.current_frame], (torch_x, torch_y))
 
