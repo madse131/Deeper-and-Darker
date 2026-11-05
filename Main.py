@@ -37,7 +37,7 @@ def actions():
     target_angle = math.degrees(math.atan2(mouse_y, mouse_x)) * -1 - 90 
     current_angle = player.player_sprite_angle 
     angle_difference = (target_angle - current_angle + 180) % 360 - 180 
-    player.player_sprite_angle += angle_difference * 0.2 #Interpolering for smooth bevegelse
+    player.player_sprite_angle += angle_difference * 0.15 #Interpolering for smooth bevegelse
     
     if keys[pg.K_w]:
         if keys[pg.K_a]:
