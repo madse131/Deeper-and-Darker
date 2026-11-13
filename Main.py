@@ -38,7 +38,8 @@ def actions():
     current_angle = player.player_sprite_angle 
     angle_difference = (target_angle - current_angle + 180) % 360 - 180 
     player.player_sprite_angle += angle_difference * 0.15 #Interpolering for smooth bevegelse
-    
+
+    #map / "player" bevegelse
     if keys[pg.K_w]:
         if keys[pg.K_a]:
             player.map_sprite_y_pos += diagonal_movement_speed
@@ -101,6 +102,7 @@ class GameObject:
         self.map_sprite_x_pos = screen.size[0]//2-5000
         self.map_sprite_y_pos = screen.size[1]//2-5000
 
+
     def draw(self):
         global screen, mouse_angle
 
@@ -111,9 +113,16 @@ class GameObject:
 
         player_sprite = pg.image.load("Assets/Player sprite.png")
         player_sprite = pg.transform.scale(player_sprite,(player_height, player_width))
-        player_sprite = pg.transform.rotate(player_sprite, self.player_sprite_angle) #TO DO: smooth non-linear rotation
+        player_sprite = pg.transform.rotate(player_sprite, self.player_sprite_angle)
         center = player_sprite.get_rect(center=(self.x_pos + self.x_size//2, self.y_pos + self.y_size//2))
         screen.blit(player_sprite, center)
+
+
+    #Sverd
+        sword_sprite = pg.image.load("Assets/DaD sword.png")
+        sword_sprite = pg.transform.scale(sword_sprite,(player_height, player_width))
+        sword_sprite = pg.transform.rotate(sword_sprite, self.player_sprite_angle) # sverd på hodet bruk blit bro
+        screen.blit(sword_sprite, center)
 
 class GUI:
     def __init__(self):
@@ -131,7 +140,6 @@ class GUI:
             pg.transform.scale(pg.image.load("Assets/DaD Torch s4.png"), (125, 200))
         ]
         
-
         self.current_frame = 0
         self.animation_timer = 0
 
@@ -173,14 +181,14 @@ class GUI:
                 self.animation_timer = 0
 
             torch_x = screen.get_width() * 0.03
-            torch_y = screen.get_height() * 0.67
+            torch_y = screen.get_height() * 0.72
 
             screen.blit(self.torch_frames[self.current_frame], (torch_x, torch_y))
 
 
 
         
-        # Fade
+        # Fade ( nederst )
         if self.fading_out:
             self.fade += 3
 
