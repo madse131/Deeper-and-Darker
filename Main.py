@@ -8,8 +8,8 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Player attributes
-player_height = 130
-player_width = 130
+player_height = 260 # feil
+player_width = 260
 player_health = 3
 
 movement_speed = 5
@@ -94,7 +94,7 @@ class GameObject:
         self.x_pos = x_pos
         self.y_pos = y_pos
 
-        self.rect = pg.Rect(self.x_pos,self.y_pos,self.x_size, self.y_size)
+        self.rect = pg.Rect(self.x_pos,self.y_pos,self.x_size/2, self.y_size/2) # fiks
 
         self.player_sprite_angle = 0
 
@@ -120,10 +120,8 @@ class GameObject:
 
 
     #Sverd
-        sword_sprite = pg.image.load("Assets/DaD sword.png")
-        sword_sprite = pg.transform.scale(sword_sprite,(player_height, player_width))
-        sword_sprite = pg.transform.rotate(sword_sprite, self.player_sprite_angle) # sverd på hodet bruk blit bro
-        screen.blit(sword_sprite, center)
+        #sword_sprite = pg.image.load("Assets/DaD sword.png")
+  
 
 class GUI:
     def __init__(self):
