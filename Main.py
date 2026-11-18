@@ -10,6 +10,7 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 # Player attributes
 player_height = 130
 player_width = 130
+player_health = 3
 
 movement_speed = 5
 diagonal_movement_speed = movement_speed*math.sqrt(2)/2
@@ -132,7 +133,7 @@ class GUI:
         self.fading_out = False
         self.game_started = False
 
-
+        # Torch animation frames
         self.torch_frames = [
             pg.transform.scale(pg.image.load("Assets/DaD Torch s1.png"), (125, 200)),
             pg.transform.scale(pg.image.load("Assets/DaD Torch s2.png"), (125, 200)),
@@ -142,6 +143,16 @@ class GUI:
         
         self.current_frame = 0
         self.animation_timer = 0
+
+        # Health bar phases
+        self.current_health = 3
+        if player_health == 3:
+            self.current_health = pg.image.load("Assets/Heart3.png")
+        elif player_health == 2:
+            self.current_health = pg.image.load("Assets/Heart2.png")
+        elif player_health == 1:
+            self.current_health = pg.image.load("Assets/Heart1.png")
+
 
     def draw(self):
         global screen
@@ -185,7 +196,11 @@ class GUI:
 
             screen.blit(self.torch_frames[self.current_frame], (torch_x, torch_y))
 
-
+        # Health bar
+        if self.game_started == True:
+            self.current_health = pg.transform.scale(self.current_health,(444,138))
+            screen.blit(self.current_health,(50, 50))
+            
 
         
         # Fade ( nederst )
