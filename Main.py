@@ -8,8 +8,8 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Player attributes
-player_height = 260 # feil
-player_width = 260
+player_height = 390 # feil
+player_width = 390
 player_health = 3
 
 movement_speed = 5
@@ -88,13 +88,13 @@ def draw():
 # KLASSER
 class GameObject:
     def __init__(self, x_pos=screen.size[0]//2-player_width//2, y_pos=screen.size[1]//2-player_height//2):
-        self.x_size = player_width   #piksler
-        self.y_size = player_height    #piksler
+        self.x_size = player_width #piksler
+        self.y_size = player_height  #piksler
 
         self.x_pos = x_pos
         self.y_pos = y_pos
 
-        self.rect = pg.Rect(self.x_pos,self.y_pos,self.x_size/2, self.y_size/2) # fiks
+        self.rect = pg.Rect(self.x_pos+self.x_size/2,self.y_pos+self.y_size_size/2,self.x_size/3, self.y_size/3) # fiks
 
         self.player_sprite_angle = 0
 
