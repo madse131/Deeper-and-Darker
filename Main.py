@@ -110,7 +110,7 @@ class GameObject:
         pg.draw.rect(screen, (150,0,0), self.rect)
 
 
-        #screen.blit(self.map_sprite, (self.map_sprite_x_pos, self.map_sprite_y_pos))
+        screen.blit(self.map_sprite, (self.map_sprite_x_pos, self.map_sprite_y_pos))
 
         player_sprite = pg.image.load("Assets/Player sprite.png")
         player_sprite = pg.transform.scale(player_sprite,(player_height, player_width))
