@@ -8,8 +8,8 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Player attributes
-player_height = 390 # feil
-player_width = 390
+player_height = 520 # feil
+player_width = 520
 player_health = 3
 
 movement_speed = 5
@@ -94,7 +94,7 @@ class GameObject:
         self.x_pos = x_pos
         self.y_pos = y_pos
 
-        self.rect = pg.Rect(self.x_pos+self.x_size/2,self.y_pos+self.y_size/2,self.x_size/3, self.y_size/3) # fiks
+        self.rect = pg.Rect(self.x_pos+self.x_size/2-55,self.y_pos+self.y_size/2-55,self.x_size/5, self.y_size/5) # fiks
 
         self.player_sprite_angle = 0
 
@@ -110,7 +110,7 @@ class GameObject:
         pg.draw.rect(screen, (150,0,0), self.rect)
 
 
-        screen.blit(self.map_sprite, (self.map_sprite_x_pos, self.map_sprite_y_pos))
+        #screen.blit(self.map_sprite, (self.map_sprite_x_pos, self.map_sprite_y_pos))
 
         player_sprite = pg.image.load("Assets/Player sprite.png")
         player_sprite = pg.transform.scale(player_sprite,(player_height, player_width))
