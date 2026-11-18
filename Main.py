@@ -71,9 +71,6 @@ def actions():
     for event in events:
         if event.type == pg.QUIT:
             run = False
-
-    #Sword swing
-    if keys[pg.mouse.get_pressed()]:
         
 
 
@@ -107,9 +104,18 @@ class GameObject:
         self.map_sprite_x_pos = screen.size[0]//2-5000
         self.map_sprite_y_pos = screen.size[1]//2-5000
 
+        self.current_frame = 0
+        self.animation_timer = 0
+
+        self.attack_frames = [
+            pg.transform.scale(pg.image.load("Assets/Sword swing 1.png"), (player_width, player_height)),
+            pg.transform.scale(pg.image.load("Assets/Sword swing 2.png"), (player_width, player_height)),
+            pg.transform.scale(pg.image.load("Assets/Sword swing 3.png"), (player_width, player_height)),
+        ]
+
 
     def draw(self):
-        global screen, mouse_angle
+        global screen, mouse_angle, mouse_buttons
 
         pg.draw.rect(screen, (150,0,0), self.rect)
 
@@ -120,7 +126,16 @@ class GameObject:
         player_sprite = pg.transform.scale(player_sprite,(player_height, player_width))
         player_sprite = pg.transform.rotate(player_sprite, self.player_sprite_angle)
         center = player_sprite.get_rect(center=(self.x_pos + self.x_size//2, self.y_pos + self.y_size//2))
-        screen.blit(player_sprite, center)
+        if pg.mouse.get_pressed()[0]:
+                    self.animation_timer += 1
+        
+                    if self.animation_timer >= 10:
+                        self.current_frame = (self.current_frame + 1) % 4
+                        self.animation_timer = 0
+        
+                    screen.blit(self.attack_frames[self.current_frame], (center))
+        else:
+            screen.blit(player_sprite, center)
 
         #Sword swing
         #her skriv utseende
