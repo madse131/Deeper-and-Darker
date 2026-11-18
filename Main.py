@@ -72,6 +72,10 @@ def actions():
         if event.type == pg.QUIT:
             run = False
 
+    #Sword swing
+    if keys[pg.mouse.get_pressed()]:
+        
+
 
 def draw():
     global screen, game_objects
@@ -117,6 +121,9 @@ class GameObject:
         player_sprite = pg.transform.rotate(player_sprite, self.player_sprite_angle)
         center = player_sprite.get_rect(center=(self.x_pos + self.x_size//2, self.y_pos + self.y_size//2))
         screen.blit(player_sprite, center)
+
+        #Sword swing
+        #her skriv utseende
 
 
     #Sverd
