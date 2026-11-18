@@ -94,7 +94,7 @@ class GameObject:
         self.x_pos = x_pos
         self.y_pos = y_pos
 
-        self.rect = pg.Rect(self.x_pos+self.x_size/2,self.y_pos+self.y_size_size/2,self.x_size/3, self.y_size/3) # fiks
+        self.rect = pg.Rect(self.x_pos+self.x_size/2,self.y_pos+self.y_size/2,self.x_size/3, self.y_size/3) # fiks
 
         self.player_sprite_angle = 0
 
