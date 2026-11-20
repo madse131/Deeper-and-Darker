@@ -130,7 +130,7 @@ class GameObject:
                     self.animation_timer += 1
         
                     if self.animation_timer >= 10:
-                        self.current_frame = (self.current_frame + 1) % 4
+                        self.current_frame = (self.current_frame + 1) % 3
                         self.animation_timer = 0
         
                     screen.blit(self.attack_frames[self.current_frame], (center))
