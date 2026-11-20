@@ -111,6 +111,7 @@ class GameObject:
             pg.transform.scale(pg.image.load("Assets/Sword swing 1.png"), (player_width, player_height)),
             pg.transform.scale(pg.image.load("Assets/Sword swing 2.png"), (player_width, player_height)),
             pg.transform.scale(pg.image.load("Assets/Sword swing 3.png"), (player_width, player_height)),
+            pg.transform.scale(pg.image.load("Assets/Player sprite.png"), (player_width, player_height))
         ]
 
 
@@ -126,15 +127,16 @@ class GameObject:
         player_sprite = pg.transform.scale(player_sprite,(player_height, player_width))
         player_sprite = pg.transform.rotate(player_sprite, self.player_sprite_angle)
         center = player_sprite.get_rect(center=(self.x_pos + self.x_size//2, self.y_pos + self.y_size//2))
-        if pg.mouse.get_pressed()[0]:
+        
+        if pg.mouse.get_pressed()[0]:  
                     self.animation_timer += 1
         
-                    if self.animation_timer >= 10:
+                    if self.animation_timer >= 4:
                         self.current_frame = (self.current_frame + 1) % 4
                         self.animation_timer = 0
         
-                    screen.blit(self.attack_frames[self.current_frame], (center))
-        else:
+                    screen.blit(self.attack_frames[self.current_frame], (center))                       # FIX ME
+        else:   
             screen.blit(player_sprite, center)
 
         #Sword swing
