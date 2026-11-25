@@ -119,7 +119,7 @@ class GameObject:
         global screen, mouse_angle, mouse_buttons
 
         pg.draw.rect(screen, (150,0,0), self.rect)
-
+        
 
         screen.blit(self.map_sprite, (self.map_sprite_x_pos, self.map_sprite_y_pos))
 
@@ -139,13 +139,7 @@ class GameObject:
         else:   
             screen.blit(player_sprite, center)
 
-        #Sword swing
-        #her skriv utseende
-
-
-    #Sverd
-        #sword_sprite = pg.image.load("Assets/DaD sword.png")
-  
+      
 
 class GUI:
     def __init__(self):
@@ -174,6 +168,8 @@ class GUI:
             self.current_health = pg.image.load("Assets/Heart2.png")
         elif player_health == 1:
             self.current_health = pg.image.load("Assets/Heart1.png")
+
+        # Low health blink
 
 
     def draw(self):
@@ -242,6 +238,12 @@ class GUI:
         fade.fill((0, 0, 0))
         fade.set_alpha(self.fade)
         screen.blit(fade, (0, 0))
+
+
+class Enemies:
+    def __init__(self):
+        pass
+
 
 ### Player
 start = GUI()
