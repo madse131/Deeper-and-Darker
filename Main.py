@@ -169,8 +169,9 @@ class GUI:
         elif player_health == 1:
             self.current_health = pg.image.load("Assets/Heart1.png")
 
-        # Low health blink
-
+        # Health bar flash
+        self.health_flash_alpha = 0
+        self.health_flash = pg.transform.scale(pg.image.load("Assets/Healthbar Flash.png"), (444,138))
 
     def draw(self):
         global screen
@@ -200,7 +201,7 @@ class GUI:
             button_rect = button.get_rect(center=(screen.size[0]/2, screen.size[1]/2))
 
             screen.blit(button, button_rect)
-            
+
         # Torch animation
         if self.game_started == True:
             self.animation_timer += 1
@@ -219,7 +220,16 @@ class GUI:
             self.current_health = pg.transform.scale(self.current_health,(444,138))
             screen.blit(self.current_health,(50, 50))
             
+        # Low health blink
+        if self.game_started == True:
+            if player_health == 1:
+                self.health_flash_alpha += 5
 
+                if self.health_flash_alpha > 255:
+                    self.health_flash_alpha = 0
+
+                self.health_flash.set_alpha(self.health_flash_alpha * 0.3)
+                screen.blit(self.health_flash, (50, 50))
         
         # Fade ( nederst )
         if self.fading_out:
