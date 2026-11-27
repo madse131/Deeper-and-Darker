@@ -135,7 +135,14 @@ class GameObject:
                         self.current_frame = (self.current_frame + 1) % 4
                         self.animation_timer = 0
         
-                    screen.blit(self.attack_frames[self.current_frame], (center))                       # FIX ME
+                     # Rotate attack animation to match player rotation
+                    attack_sprite = pg.transform.rotate(self.attack_frames[self.current_frame],self.player_sprite_angle)
+
+                     # Keep the attack animation centered on the player
+                    attack_rect = attack_sprite.get_rect(
+                    center=(self.x_pos + self.x_size // 2, self.y_pos + self.y_size // 2))
+
+                    screen.blit(attack_sprite, attack_rect)
         else:   
             screen.blit(player_sprite, center)
 
